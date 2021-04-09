@@ -1,10 +1,15 @@
-import { BaseLayout, BaseParagraph } from "./BaseLayout";
-import { LoginButtonLayout } from "./LoginButtonLayout";
+import { BaseLayout, BaseParagraph, MainLayout } from "./BaseLayout";
+import { ButtonLayout } from "./ButtonLayout";
+import { LogoutButton } from "./LogoutButton";
+
+
 
 export {
     BaseLayout,
     BaseParagraph,
-    LoginButtonLayout
+    MainLayout,
+    ButtonLayout,
+    LogoutButton,
     
 }
 

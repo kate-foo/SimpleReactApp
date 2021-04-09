@@ -18,8 +18,17 @@ const BaseParagraph = styled.p`
   color: ${props => props.color || 'black'};
 `
 
+const MainLayout = styled.div`
+  padding: 5px 5px 0 10px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  
+`
+
 
 export {
     BaseLayout,
-    BaseParagraph
+    BaseParagraph,
+    MainLayout
 }
