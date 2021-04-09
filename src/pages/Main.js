@@ -1,18 +1,27 @@
 import React from 'react';
-import {LogoutButton, MainLayout} from "../layouts";
+import {Button, TopLayout, MainLayout} from "../layouts";
 
 
 const Main = ({handleLogout, nickname}) => {
     
     return (
-        <MainLayout>
-            <div style={{paddingBottom: "20px"}}>
-                <b>Hello, {nickname}!</b>
-            </div>
-            <div>
-                <LogoutButton onClick={handleLogout}>Logout</LogoutButton>
-            </div>
-        </MainLayout>
+        <div>
+            <TopLayout>
+                <div style={{display: "flex", flexDirection: "row"}}>
+                    <div>
+                        <b>Hello, James!</b>
+                    </div>
+                    
+                </div>
+                <div style={{marginRight: "20px", paddingTop: "10px"}}>
+                    <Button onClick={handleLogout}>Logout</Button>
+                </div>
+            </TopLayout>
+            <MainLayout>
+                Main section
+            </MainLayout>
+        </div>
+       
     )
 }
 

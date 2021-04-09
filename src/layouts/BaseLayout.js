@@ -8,6 +8,7 @@ const BaseLayout = styled.div`
   font-weight: normal;
   font-style: normal;
   color: black;
+  text-align: center;
 `;
 
 const BaseParagraph = styled.p`
@@ -18,17 +19,25 @@ const BaseParagraph = styled.p`
   color: ${props => props.color || 'black'};
 `
 
-const MainLayout = styled.div`
-  padding: 5px 5px 0 10px;
+const TopLayout = styled.div`
+  padding: 5px 10px 5px 10px;
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  
+  justify-content: space-between;
+  background-color: darkcyan;
+  width: 100%;
+  height: 60px;
+  color: white;
 `
 
+const MainLayout = styled.div`
+  padding: 15px 10px 5px 10px;
+  display: flex;
+  width: 100%;
+`
 
 export {
     BaseLayout,
     BaseParagraph,
+    TopLayout,
     MainLayout
 }

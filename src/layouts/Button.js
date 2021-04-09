@@ -1,19 +1,20 @@
 import styled from 'styled-components';
 
-const LogoutButton = styled.button`
+const Button = styled.button`
   outline: none;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   font-weight: bold;
   cursor: pointer;
-  padding: 5px 10px 5px 10px;
+  padding: 5px 15px 5px 15px;
+  height: 80%;
 
   font-family: Consolas,serif;
   font-size: medium;
-  background-color: crimson;
+  background-color: blue;
   color: azure;
 `
 
 export {
-    LogoutButton
+    Button
 }

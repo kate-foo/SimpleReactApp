@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const ButtonLayout = styled.div`
+const LoginButtonLayout = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -13,5 +13,5 @@ const ButtonLayout = styled.div`
 `
 
 export {
-    ButtonLayout
+    LoginButtonLayout
 }

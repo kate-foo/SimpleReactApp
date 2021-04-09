@@ -1,5 +1,5 @@
 import React, {Fragment, useEffect, useState} from 'react';
-import {BaseLayout, ButtonLayout} from "./layouts";
+import {BaseLayout, LoginButtonLayout} from "./layouts";
 import axios from 'axios';
 import { getCookie } from "./utils/CookieUtils"
 import Main from "./pages/Main";
@@ -14,12 +14,12 @@ function App() {
     const [signIn, setSignIn] = useState(false);
     const [nickname, setNickname] = useState("");
     
-    // 정상적으로 로그아웃하지 않았다면 쿠키가 남아있을 것이다.
     useEffect(() => {
         const v = getCookie("foo-app-jwt-flag");
-        if (JSON.parse(v) === true) {
-            setSignIn(true);
-        }
+         if (JSON.parse(v) === true) {
+             setSignIn(true);
+         }
+        
     }, []);
     
     useEffect(() => {
@@ -46,13 +46,13 @@ function App() {
     return (
         
         <BaseLayout>
-            <ButtonLayout>
             {!signIn?
                 <Fragment>
                     <img src={logo} className="App-logo" alt="logo" />
-                    <br/>
-                    <img src={naverLogin}  alt="Naver Login"  onClick={handleLogin} id="naver" style={{width: "120px", height: "45px"}}/>
-                    <img src={googleLogin} alt="Google Login" onClick={handleLogin} id="google"/>
+                    <LoginButtonLayout>
+                        <img src={naverLogin}  alt="Naver Login"  onClick={handleLogin} id="naver" style={{width: "120px", height: "45px"}}/>
+                        <img src={googleLogin} alt="Google Login" onClick={handleLogin} id="google"/>
+                    </LoginButtonLayout>
                 </Fragment>
                 :
                 <Fragment>
@@ -60,7 +60,6 @@ function App() {
                 </Fragment>
                 
             }
-            </ButtonLayout>
         </BaseLayout>
     );
 }
