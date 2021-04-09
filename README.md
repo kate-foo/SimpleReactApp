@@ -1,70 +1,33 @@
-# Getting Started with Create React App
+## 스프링 부트 정적 리소스 디렉토리에 프론트엔드 애플리케이션 배포하기
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+* 스프링 부트 gradle 빌드  
+  프론트엔드 애플리케이션을 `yarn build`를 하면 build 디렉토리에 빌드 chunk가 생깁니다. 이것을 스프링 부트의 정적 리소스 
+  디렉토리인 `/resources/static/` 아래로 복사합니다.
+    
+* Gradle Plugin for Node
+  build.grade 스크립트에서 프론트엔드 애플리케이션 빌드를 할 수 있습니다. Node.js 프로젝트의 빌드 플러그인을 사용합니다.
+  [Gradle Plugin for Node](https://github.com/node-gradle/gradle-node-plugin) 을 플러그인으로 추가합니다. 
+  
+  예를 들어 리액트 애플리케이션 프로젝트의 위치가 `C:/Users/kate-foo/myapp` 이라고 하면 다음과 같은 태스크를 작성합니다.
+  
+  ```
+  def frontendDir = "C:/Users/kate-foo/myapp"
 
-## Available Scripts
+  task copyFrontend(type: Copy) {
+     from "$frontendDir/build"
+     into "$projectDir/src/main/resources/static"       
+  }
 
-In the project directory, you can run:
+  // copy frontend app chunk to static directory after yarn_build task
+  copyFrontend.dependsOn(yarn_build)
 
-### `yarn start`
+  compileJava.dependsOn(copyFrontend)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+  node {
+    nodeProjectDir = file("$frontendDir")
+  }
+  ```
+  `copyFrontend` 태스크는 리액트 애플리케이션의 `build` 디렉토리에서 스프링 부트 정적 리소스 디렉토리로 복사하는 태스크입니다.
+  그런데 이 태스크는 Node.js 플러그인이 제공하는 `yarn_build` 태스크 후에 실행되어야 합니다. 이 때 사용할 수 있는 것이 `dependsOn` 입니다.
+  
+  결과적으로 스프링 부트 프로젝트를 빌드하면 자동으로 프론트엔드 애플리케이션도 빌드되어 정적 리소스 디렉토리로 복사됩니다. 
