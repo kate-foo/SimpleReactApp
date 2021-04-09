@@ -9,7 +9,7 @@ const Main = ({handleLogout, nickname}) => {
             <TopLayout>
                 <div style={{display: "flex", flexDirection: "row"}}>
                     <div>
-                        <b>Hello, James!</b>
+                        <b>Hello, {nickname}!😉</b>
                     </div>
                     
                 </div>
