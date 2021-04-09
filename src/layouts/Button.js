@@ -4,15 +4,20 @@ const Button = styled.button`
   outline: none;
   border: none;
   border-radius: 5px;
-  font-weight: bold;
   cursor: pointer;
-  padding: 5px 15px 5px 15px;
-  height: 80%;
+  padding: 0 20px 0 20px;
+  height: 40px;
 
-  font-family: Consolas,serif;
+  font-family: inherit;
+  font-weight: lighter;
   font-size: medium;
   background-color: blue;
   color: azure;
+  
+  &:hover {
+    background-color: azure;
+    color: blue;
+  }
 `
 
 export {

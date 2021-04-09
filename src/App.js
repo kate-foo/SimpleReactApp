@@ -49,10 +49,12 @@ function App() {
             {!signIn?
                 <Fragment>
                     <img src={logo} className="App-logo" alt="logo" />
+                    
                     <LoginButtonLayout>
-                        <img src={naverLogin}  alt="Naver Login"  onClick={handleLogin} id="naver" style={{width: "120px", height: "45px"}}/>
+                        <img src={naverLogin}  alt="Naver Login"  onClick={handleLogin} id="naver" style={{width: "120px", height: "45px", marginRight: "10px"}}/>
                         <img src={googleLogin} alt="Google Login" onClick={handleLogin} id="google"/>
                     </LoginButtonLayout>
+                    
                 </Fragment>
                 :
                 <Fragment>

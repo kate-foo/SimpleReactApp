@@ -4,9 +4,7 @@ const LoginButtonLayout = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
-  width: 320px;
-  padding-left: 10px;
+  justify-content: center;
   & img {
     cursor: pointer;
   }
