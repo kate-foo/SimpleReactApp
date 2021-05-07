@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Button = styled.button`
+const ButtonLogout = styled.button`
   outline: none;
   border: none;
   border-radius: 5px;
@@ -21,5 +21,5 @@ const Button = styled.button`
 `
 
 export {
-    Button
+    ButtonLogout
 }
