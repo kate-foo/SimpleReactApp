@@ -11,7 +11,6 @@ function* getList(action) {
     //const state = yield select();
     
     try {
-        console.log("getList!");
         const response = yield call(axios.post, `${DEV_API_HOST_URL}/api/board/listPage`, action.payload);
         console.log(response);
         yield put(ACTIONS.getListOk(response));

@@ -4,7 +4,7 @@ import { BaseLayout, BaseText, TopLayout, MainLayout } from "./BaseLayout";
 import { ButtonLogin } from "./ButtonLogin";
 import { ButtonLogout } from "./ButtonLogout";
 import { MenuLayout } from "./MenuLayout";
-import { gridBoard1Options, onGridReady} from "./GridOptions";
+import { gridBoardOptions1, onGridReady} from "./GridOptions";
 import Modal from "./Modal";
 
 
@@ -17,7 +17,7 @@ export {
     MenuLayout,
     Modal,
     MainLayout,
-    gridBoard1Options,
+    gridBoardOptions1,
     onGridReady
 }
 

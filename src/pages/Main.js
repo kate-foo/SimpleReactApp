@@ -4,7 +4,6 @@ import {BrowserRouter as Router, Route, Switch, Link} from "react-router-dom";
 
 import { List, Read, Write } from "./board";
 
-
 const Main = ({handleLogout, nickname}) => {
    
     return (
@@ -21,8 +20,8 @@ const Main = ({handleLogout, nickname}) => {
                         </div>
                     </div>
                     <MenuLayout>
-                        <Link to="/">Home💒</Link>
-                        <Link to="/app/list">게시판</Link>
+                        <Link to="/">🏡 메인</Link>
+                        <Link to="/app/list">📝 게시판</Link>
                         <a href={"/"}>메뉴2</a>
                         <a href={"/"}>메뉴3</a>
                     </MenuLayout>

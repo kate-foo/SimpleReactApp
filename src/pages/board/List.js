@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, Fragment} from "react";
 import { useSelector, useDispatch } from "react-redux"
-import {BaseText, gridBoard1Options, onGridReady, onRowClicked} from "../../layouts";
+import {BaseText, gridBoardOptions1, onGridReady, onRowClicked} from "../../layouts";
 import { getList, getRead }from "../../redux/actions";
 import { RECORD_COUNT_PER_PAGE, PAGE_LIST_SIZE } from "../../utils/ConstUtils";
 import PageNavi from "../Pagination";
@@ -53,32 +53,33 @@ const List = ({history}) => {
     }
     
     return (
-        
-        <div className="ag-theme-alpine" style={{ width: '100%', height: '472px'}}>
-            <div style={{textAlign: "left"}}>
-                <BaseText>Total {totalCount}</BaseText>
-            </div>
-            <AgGridReact rowData={rowData}
-                         gridOptions={gridBoard1Options}
-                         onGridReady={onGridReady}
-                         onRowClicked={onRowClicked} />
-            <PageNavi activePage={activePage}
-                        itemsCountPerPage={RECORD_COUNT_PER_PAGE}
-                        totalItemsCount={totalCount}
-                        pageRangeDisplayed={PAGE_LIST_SIZE}
-                        onPageChange={handlePageNavi}
-            />
-            <form className="form-inline">
-                <div className="form-group">
+        <div style={{display: "flex", flexDirection: "column", width: "100%"}}>
+            <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
+                <form className="form-inline">
                     <input type="text" className="form-control" id="search" size={50}/>
+                    {' '}
+                    <button type="button" className="btn btn-primary" onClick={handleSearch}>Search</button>
+                </form>
+                <form className="form-inline">
+                    <button type="button" className="btn btn-success" onClick={handleCreate}>Create</button>
+                </form>
+            </div>
+            <div className="ag-theme-alpine" style={{ width: '100%', height: '472px'}}>
+                <div style={{textAlign: "left", marginTop: "10px"}}>
+                    <BaseText>Total {totalCount}</BaseText>
                 </div>
-                {' '}
-                <button type="button" className="btn btn-primary" onClick={handleSearch}>Search</button>
-                {' '}
-                <button type="button" className="btn btn-success" onClick={handleCreate}>Create</button>
-            </form>
+                <AgGridReact rowData={rowData}
+                             gridOptions={gridBoardOptions1}
+                             onGridReady={onGridReady}
+                             onRowClicked={onRowClicked} />
+                <PageNavi activePage={activePage}
+                          itemsCountPerPage={RECORD_COUNT_PER_PAGE}
+                          totalItemsCount={totalCount}
+                          pageRangeDisplayed={PAGE_LIST_SIZE}
+                          onPageChange={handlePageNavi}
+                />
+            </div>
         </div>
-    
     )
 }
 
