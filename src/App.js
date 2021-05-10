@@ -17,14 +17,14 @@ import './App.css';
 
 function App() {
     
-    const [signIn, setSignIn] = useState(true); // TODO 개발중인 경우 true
+    const [signIn, setSignIn] = useState(false); // TODO 개발중인 경우 true
     const [nickname, setNickname] = useState("");
     
     useEffect(() => {
         const v = getCookie("foo-app-jwt-flag");
-         if (JSON.parse(v) === true) {
-             setSignIn(true);
-         }
+        if (JSON.parse(v) === true) {
+            setSignIn(true);
+        }
         
     }, []);
     
@@ -32,11 +32,11 @@ function App() {
        
         if (signIn) {
             // TODO 개발 중에는 주석처리
-            // axios.post(`/api/hello/`).then((response) => {
-            //     console.log(response);
-            //     setNickname(response.data);
-            //
-            // }, (error) => {console.log(error)});
+            axios.post(`/api/hello/`).then((response) => {
+                console.log(response);
+                setNickname(response.data);
+
+            }, (error) => {console.log(error)});
         }
         
     }, [signIn]);

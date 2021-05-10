@@ -1,6 +1,6 @@
 import React, {useEffect, useState, Fragment} from "react";
 import { useSelector, useDispatch } from "react-redux"
-import {BaseText, gridBoardOptions1, onGridReady, onRowClicked} from "../../layouts";
+import {BaseText, gridBoardOptions1, onGridReady} from "../../layouts";
 import { getList, getRead }from "../../redux/actions";
 import { RECORD_COUNT_PER_PAGE, PAGE_LIST_SIZE } from "../../utils/ConstUtils";
 import PageNavi from "../Pagination";

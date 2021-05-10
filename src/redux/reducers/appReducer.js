@@ -10,6 +10,13 @@ function appReducer(state, action) {
             return Object.assign({}, state, {
                 initialized: true
             });
+    
+        case ACTIONS.SIGN_IN_FAILED:
+        
+            return Object.assign({}, state, {
+                initialized: false,
+                pending: false
+            });
         
         case ACTIONS.GET_LIST:
 

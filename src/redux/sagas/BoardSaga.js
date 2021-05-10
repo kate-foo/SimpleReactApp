@@ -37,7 +37,7 @@ function* getRead(action) {
 
 //watcher saga
 function* getListSaga() {
-    yield takeLatest(ACTIONS.GET_LIST, getList);
+    yield takeLatest(ACTIONS.GET_LIST_CALL, getList);
 }
 
 function* getReadSaga() {

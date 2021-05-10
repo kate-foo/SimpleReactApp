@@ -1,6 +1,8 @@
 // 액션 타입
 //조회
+
 export const GET_LIST = "GET_LIST";
+export const GET_LIST_CALL = "GET_LIST_CALL";
 export const GET_LIST_OK = "GET_LIST_OK";
 
 //저장
@@ -21,9 +23,13 @@ export const MODIFY_POST = "MODIFY_POST";
 //인증성공
 export const SIGN_IN_SUCCESS = "SIGN_IN_SUCCESS";
 
+//인증실패 또는 JWT 만료
+export const SIGN_IN_FAILED = "SIGN_IN_FAILED";
 
 // 액션 생성 함수
+
 export const getList = (params) => ({type: GET_LIST, payload: params});
+export const getListCall = (params) => ({type: GET_LIST_CALL, payload: params});
 export const getListOk = (response) => ({type: GET_LIST_OK, response});
 
 export const savePost = (params) => ({type: SAVE_POST, payload: params});
@@ -40,3 +46,4 @@ export const modifyPost = (params) => ({type: MODIFY_POST, payload: params});
 
 
 export const signInSuccess = (params) => ({type: SIGN_IN_SUCCESS, payload: params});
+export const signInFailed = () => ({type: SIGN_IN_FAILED});

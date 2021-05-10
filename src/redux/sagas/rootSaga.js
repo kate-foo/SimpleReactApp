@@ -1,9 +1,12 @@
-import { all, fork } from 'redux-saga/effects';
-import BoardSaga from './BoardSaga';
+import { all } from "redux-saga/effects";
+import SignInSaga from "./SigninSaga";
+import BoardSaga from "./BoardSaga";
+
 
 export default function* root() {
     const sagas = [
-        ...BoardSaga.map(saga => saga()),
+        ...SignInSaga.map(saga => saga()),
+        ...BoardSaga.map(saga => saga())
     ];
     
     //all([effects])
