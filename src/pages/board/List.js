@@ -27,7 +27,8 @@ const List = ({history}) => {
     }, []);
     
     useEffect(() => {
-        if (!isEmpty(response) && response.data !== undefined && response.data.list.length > 0) {
+        if (!isEmpty(response) && response.data !== undefined
+            && response.data.list !== undefined && response.data.list.length > 0) {
             setRowData(response.data.list);
             setTotalCount(response.data.totalCount);
         }
@@ -48,8 +49,8 @@ const List = ({history}) => {
     
     const onRowClicked = (params) => {
         const data = params.api.getSelectedNodes()[0].data;
-        //console.log(data);
-        dispatch(getRead(data.cnttId));
+        console.log(data);
+        //dispatch(getRead(data));
     }
     
     return (
@@ -64,21 +65,22 @@ const List = ({history}) => {
                     <button type="button" className="btn btn-success" onClick={handleCreate}>Create</button>
                 </form>
             </div>
-            <div className="ag-theme-alpine" style={{ width: '100%', height: '472px'}}>
+            <div className="ag-theme-alpine" style={{ width: '100%'}}>
                 <div style={{textAlign: "left", marginTop: "10px"}}>
                     <BaseText>Total {totalCount}</BaseText>
                 </div>
                 <AgGridReact rowData={rowData}
                              gridOptions={gridBoardOptions1}
                              onGridReady={onGridReady}
-                             onRowClicked={onRowClicked} />
-                <PageNavi activePage={activePage}
-                          itemsCountPerPage={RECORD_COUNT_PER_PAGE}
-                          totalItemsCount={totalCount}
-                          pageRangeDisplayed={PAGE_LIST_SIZE}
-                          onPageChange={handlePageNavi}
-                />
+                             onRowClicked={onRowClicked}
+                             domLayout="autoHeight"/>
             </div>
+            <PageNavi activePage={activePage}
+                      itemsCountPerPage={RECORD_COUNT_PER_PAGE}
+                      totalItemsCount={totalCount}
+                      pageRangeDisplayed={PAGE_LIST_SIZE}
+                      onPageChange={handlePageNavi}
+            />
         </div>
     )
 }

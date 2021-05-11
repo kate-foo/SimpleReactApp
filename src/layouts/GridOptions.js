@@ -38,6 +38,7 @@ const gridBoardOptions2 = {
 
 const onGridReady = (params) => {
     params.api.sizeColumnsToFit();
+    
 }
 
 // const onRowClicked = (params) => {

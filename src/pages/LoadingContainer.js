@@ -29,7 +29,7 @@ const LoadingContainer = ({signIn, children}) => {
     }
     
     //TODO
-    // JWT 만료 후에 다시 로그인을 하게 하려면?
+    // JWT 만료 후에 다시 로그인
     return (
         (!initialized)?
            <div style={{marginTop: "20px"}}>

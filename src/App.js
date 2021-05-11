@@ -17,8 +17,15 @@ import './App.css';
 
 function App() {
     
-    const [signIn, setSignIn] = useState(false); // TODO 개발중인 경우 true
-    const [nickname, setNickname] = useState("");
+    let FLAG_DEV = false;
+    let INIT_USER = "";
+    if (process.env.REACT_APP_DEV) {
+        console.log("========== DEV ==========");
+        FLAG_DEV = true;
+        INIT_USER = "foo-dev";
+    }
+    const [signIn, setSignIn] = useState(FLAG_DEV);
+    const [nickname, setNickname] = useState(INIT_USER);
     
     useEffect(() => {
         const v = getCookie("foo-app-jwt-flag");
@@ -28,10 +35,10 @@ function App() {
         
     }, []);
     
+    // 백엔드(JWT 를 파싱)에서 사용자 ID를 리턴받음
     useEffect(() => {
        
-        if (signIn) {
-            // TODO 개발 중에는 주석처리
+        if (signIn && !FLAG_DEV) {
             axios.post(`/api/hello/`).then((response) => {
                 console.log(response);
                 setNickname(response.data);
@@ -66,7 +73,7 @@ function App() {
                 :
                 <Fragment>
                     <Provider store={store}>
-                        <LoadingContainer signIn={signIn}>
+                        <LoadingContainer signIn={signIn} nickname={nickname}>
                             <Main handleLogout={handleLogout} nickname={nickname}/>
                         </LoadingContainer>
                         <Modal>

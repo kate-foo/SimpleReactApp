@@ -10,6 +10,7 @@ export const defaultState = {
     
     response: {},
     initialized: false,
-    pending: false
+    pending: false,
+    userId: '-'
 }
 
