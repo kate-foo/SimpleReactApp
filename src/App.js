@@ -18,21 +18,20 @@ import './App.css';
 function App() {
     
     let FLAG_DEV = false;
-    let INIT_USER = "";
+    let INIT_USER = {};
     if (process.env.REACT_APP_DEV) {
         console.log("========== DEV ==========");
         FLAG_DEV = true;
-        INIT_USER = "foo-dev";
+        INIT_USER = {userName: "foo-dev", userId: "12345", userEmail: "foo@mail.com"};
     }
     const [signIn, setSignIn] = useState(FLAG_DEV);
-    const [nickname, setNickname] = useState(INIT_USER);
+    const [user, setUser] = useState(INIT_USER);
     
     useEffect(() => {
         const v = getCookie("foo-app-jwt-flag");
         if (JSON.parse(v) === true) {
             setSignIn(true);
         }
-        
     }, []);
     
     // 백엔드(JWT 를 파싱)에서 사용자 ID를 리턴받음
@@ -40,8 +39,8 @@ function App() {
        
         if (signIn && !FLAG_DEV) {
             axios.post(`/api/hello/`).then((response) => {
-                console.log(response);
-                setNickname(response.data);
+                //console.log(response.data);
+                setUser(response.data);
 
             }, (error) => {console.log(error)});
         }
@@ -73,8 +72,8 @@ function App() {
                 :
                 <Fragment>
                     <Provider store={store}>
-                        <LoadingContainer signIn={signIn} nickname={nickname}>
-                            <Main handleLogout={handleLogout} nickname={nickname}/>
+                        <LoadingContainer signIn={signIn}>
+                            <Main handleLogout={handleLogout} user={user}/>
                         </LoadingContainer>
                         <Modal>
                             <Spinning type="Oval" />

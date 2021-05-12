@@ -2,20 +2,21 @@ import React, {useEffect} from "react";
 import { ButtonLogout, TopLayout, MainLayout, MenuLayout } from "../layouts";
 import {BrowserRouter as Router, Route, Switch, Link} from "react-router-dom";
 
-import { List, Read, Write } from "./board";
-import {signInSuccess} from "../redux/actions";
-import {useDispatch} from "react-redux";
+import { List, ReadAndModify, Write } from "./board";
+import { getUser } from "../redux/actions";
+import { useDispatch } from "react-redux";
+import { isEmpty } from "lodash";
 
-const Main = ({handleLogout, nickname}) => {
+const Main = ({handleLogout, user}) => {
     
     const dispatch = useDispatch();
     
-    //TODO 사용자 정보를 스토어에 저장하기
-    // useEffect(() => {
-    //     if (nickname !== "") {
-    //         dispatch(signInSuccess({nickname}));
-    //     }
-    // }, [nickname]);
+    //사용자 정보를 스토어에 저장하기
+    useEffect(() => {
+        if (!isEmpty(user)) {
+            dispatch(getUser(user));
+        }
+    }, [user]);
    
     return (
         <div>
@@ -24,9 +25,7 @@ const Main = ({handleLogout, nickname}) => {
                     <div style={{display: "flex", flexDirection: "row"}}>
                         <div>
                             {
-                                nickname===""?
-                                    <b>Anonymous!😓</b>
-                                    :<b>Hello, {nickname}!😉</b>
+                                <b>Hello, {user.userName}!😉</b>
                             }
                         </div>
                     </div>
@@ -43,7 +42,7 @@ const Main = ({handleLogout, nickname}) => {
                 <MainLayout>
                     <Switch>
                         <Route path="/app/list"  component={List} />
-                        <Route path="/app/read"  component={Read} />
+                        <Route path="/app/read"  component={ReadAndModify} />
                         <Route path="/app/write" component={Write} />
                     </Switch>
                 </MainLayout>

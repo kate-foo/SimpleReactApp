@@ -13,7 +13,6 @@ const LoadingContainer = ({signIn, children}) => {
     const dispatch = useDispatch();
     
     useEffect(() => {
-        console.log(`signIn=${signIn}`);
         
         if (signIn) {
             //TODO

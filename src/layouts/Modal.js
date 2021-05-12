@@ -2,7 +2,7 @@ import React, {Fragment} from "react";
 import styled from "styled-components";
 import {useSelector} from "react-redux";
 
-const ModalOverlay = styled.div`
+export const ModalOverlay = styled.div`
   box-sizing: border-box;
   display: ${(props) => (props.visible ? 'block' : 'none')};
   position: fixed;
@@ -13,7 +13,7 @@ const ModalOverlay = styled.div`
   background-color: rgba(0, 0, 0, 0.6);
   z-index: 999;
 `
-const ModalWrapper = styled.div`
+export const ModalWrapper = styled.div`
   box-sizing: border-box;
   display: ${(props) => (props.visible ? 'block' : 'none')};
   position: fixed;
@@ -26,7 +26,15 @@ const ModalWrapper = styled.div`
   outline: 0;
 `
 
-//TODO 일반 Modal 으로 활용할 수 있도록 수정할 것!
+export const Center = styled.div`
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+`
+
 const Modal = ({children}) => {
     
     const pending = useSelector((state) => state.pending);

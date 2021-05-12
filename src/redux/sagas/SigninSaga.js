@@ -6,6 +6,7 @@ import { getCookie } from "../../utils/CookieUtils";
 
 function* checkSignin(action) {
     
+    // 로그인 상태인지 쿠키를 확인
     const v = getCookie("foo-app-jwt-flag");
     if (JSON.parse(v) === true) {
         
@@ -20,8 +21,12 @@ function* checkSignin(action) {
                 yield put(ACTIONS.savePostCall(action.payload));
                 break;
                 
-            case ACTIONS.READ_POST:
-                
+            case ACTIONS.DELETE_POST:
+                yield put(ACTIONS.deletePostCall(action.payload));
+                break;
+    
+            case ACTIONS.MODIFY_POST:
+                yield put(ACTIONS.modifyPostCall(action.payload));
                 break;
         
             default:
@@ -42,6 +47,8 @@ function* getSigninSaga() {
     yield takeLatest(ACTIONS.GET_LIST, checkSignin);
     yield takeLatest(ACTIONS.SAVE_POST, checkSignin);
     yield takeLatest(ACTIONS.READ_POST, checkSignin);
+    yield takeLatest(ACTIONS.DELETE_POST, checkSignin);
+    yield takeLatest(ACTIONS.MODIFY_POST, checkSignin);
     
 }
 

@@ -14,6 +14,7 @@ import "../../css/bootstrap/css/bootstrap.min.css";
 const List = ({history}) => {
     
     const response = useSelector((state) => state.response);
+    const currentPageNo = useSelector((state) => state.pageNo);
     const dispatch = useDispatch();
     
     const [rowData, setRowData] = useState([]);
@@ -22,7 +23,8 @@ const List = ({history}) => {
     
     useEffect(()=> {
         //최초 조회
-        dispatch(getList({pageNo: 1, pageSize: RECORD_COUNT_PER_PAGE}));
+        dispatch(getList({pageNo: currentPageNo, pageSize: RECORD_COUNT_PER_PAGE}));
+        setActivePage(currentPageNo);
         
     }, []);
     
@@ -40,7 +42,7 @@ const List = ({history}) => {
     }
     
     const handleSearch = () => {
-    
+        //TODO
     }
     
     const handleCreate = () => {
@@ -48,9 +50,10 @@ const List = ({history}) => {
     }
     
     const onRowClicked = (params) => {
-        const data = params.api.getSelectedNodes()[0].data;
-        console.log(data);
-        //dispatch(getRead(data));
+        const n = params.api.getSelectedNodes()[0].data;
+        const data = {...n, pageNo: activePage}
+        dispatch(getRead(data));
+        history.push('/app/read');
     }
     
     return (

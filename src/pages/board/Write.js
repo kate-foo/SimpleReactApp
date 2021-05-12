@@ -13,7 +13,7 @@ const BOARD_ID = "B01";
 
 const Write = ({history}) => {
     
-    const state = useSelector((state) => ({response: state.response, userId: state.userId}));
+    const state = useSelector((state) => ({response: state.response, user: state.user}));
     const dispatch = useDispatch();
     
     const [title, setTitle] = useState("");
@@ -33,7 +33,11 @@ const Write = ({history}) => {
     
     const handleSave = () => {
         if (!isEmpty(title) && !isEmpty(content)) {
-            dispatch(savePost({boardId: BOARD_ID, cnttTitle: title, cnttText: content, authorId: state.userId}));
+            dispatch(savePost({boardId: BOARD_ID,
+                             cnttTitle: title,
+                              cnttText: content,
+                              authorId: state.user.userId,
+                              userName: state.user.userName}));
         }
     }
     
@@ -44,21 +48,6 @@ const Write = ({history}) => {
     const handleTitleChange = (event) => {
         setTitle(event.target.value);
     }
-    
-    // const editorConfiguration = {
-    //     image: {
-    //         styles: ['alignLeft', 'alignCenter', 'alignRight']
-    //     },
-    //
-    //     toolbar: [ 'heading', 'bold', 'italic', 'fontsize', 'fontcolor', '|',
-    //                'bulletedList', 'numberedList', 'blockquote', 'link', 'code', 'codeblock', '|',
-    //                'imageupload', 'imagestyle:alignLeft', 'imagestyle:alignCenter', 'imagestyle:alignRight', '|',
-    //                'undo', 'redo'],
-    //
-    //     simpleUpload: {
-    //         uploadUrl: `${DEV_API_HOST_URL}/api/board/imageupload`,
-    //     }
-    // };
     
     return (
         <div style={{width: "100%"}}>

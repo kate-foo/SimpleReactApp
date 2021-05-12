@@ -1,15 +1,7 @@
 import React from 'react';
 import Loader from 'react-loader-spinner';
-import styled from "styled-components";
+import { Center } from "../layouts/Modal";
 
-const Center = styled.div`
-    width: 100px;
-    height: 100px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%)
-`
 
 const Spinning = (props) => (
     <Center>

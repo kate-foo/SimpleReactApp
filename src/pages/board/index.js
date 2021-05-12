@@ -1,10 +1,10 @@
 import List from "./List";
-import Read from "./Read";
+import ReadAndModify from "./ReadAndModify";
 import Write from "./Write";
 
 export {
     List,
-    Read,
+    ReadAndModify,
     Write
     
 }

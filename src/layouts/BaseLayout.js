@@ -26,11 +26,12 @@ const TopLayout = styled.div`
   height: 60px;
   color: white;
 `
-// 내용
+
 const MainLayout = styled.div`
   padding: 15px 10px 5px 10px;
   display: flex;
 `
+
 
 export {
     BaseLayout,

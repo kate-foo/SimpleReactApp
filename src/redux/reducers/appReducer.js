@@ -34,14 +34,16 @@ function appReducer(state, action) {
         case ACTIONS.READ_POST:
         
             return Object.assign({}, state, {
-                pending: true
+                //pending: true
+                response: action.payload,
+                pageNo: action.payload.pageNo
             });
             
-        case ACTIONS.READ_POST_OK:
-        
-            return Object.assign({}, state, {
-                pending: false
-            });
+        // case ACTIONS.READ_POST_OK:
+        //
+        //     return Object.assign({}, state, {
+        //         pending: false
+        //     });
     
         case ACTIONS.SAVE_POST:
         
@@ -55,6 +57,23 @@ function appReducer(state, action) {
                 response: action.response,
                 pending: false
             });
+    
+        case ACTIONS.DELETE_POST:
+        
+            return {...state, pending: true};
+            
+        case ACTIONS.DELETE_POST_OK:
+        
+            return {...state, response: action.response, pending: false};
+    
+        case ACTIONS.MODIFY_POST:
+        
+            return {...state, pending: true};
+            
+            
+        case ACTIONS.GET_USER:
+            
+            return {...state, user: action.payload}
     
         default:
             return state;
